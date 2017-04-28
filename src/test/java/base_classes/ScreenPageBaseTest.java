@@ -20,12 +20,8 @@ public class ScreenPageBaseTest extends AndroidSetup {
     public void setUp() throws Exception {
         prepareAndroidForAppium();
         new LoginPage(driver).waitForLoad().loginWithEmailAndPassword("some@test.ru", "12345");
-        screenPage = createScreenPage();
+        screenPage = new ScreenBasePage(driver);
         screenPage.waitForLoad();
-    }
-
-    protected ScreenBasePage createScreenPage() {
-        return new ScreenBasePage(driver);
     }
 
     @AfterMethod

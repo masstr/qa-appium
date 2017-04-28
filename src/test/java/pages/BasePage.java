@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 public class BasePage {
 
-
     protected WebDriver driver;
 
     public BasePage(WebDriver driver) {

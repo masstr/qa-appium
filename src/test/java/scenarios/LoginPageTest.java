@@ -41,16 +41,17 @@ public class LoginPageTest extends AndroidSetup {
 
     @Test
     public void clickableStatusSignInButtonTest() throws InterruptedException {
-        Assert.assertFalse(loginPage.isSignInButtonClickable());
+        Assert.assertFalse(loginPage.siginButton.isEnabled());
         loginPage.enterEmail("sometext");
-        Assert.assertFalse(loginPage.isSignInButtonClickable());
-        loginPage.clearEmail();
+        Assert.assertFalse(loginPage.siginButton.isEnabled());
+        loginPage.emailField.clear();
         loginPage.enterPassword("123");
-        Assert.assertFalse(loginPage.isSignInButtonClickable());
+        Assert.assertFalse(loginPage.siginButton.isEnabled());
         loginPage.enterEmail("sometext");
-        Assert.assertTrue(loginPage.isSignInButtonClickable());
-        loginPage.clearEmail();
-        loginPage.clearPassword();
-        Assert.assertFalse(loginPage.isSignInButtonClickable());
+        Assert.assertTrue(loginPage.siginButton.isEnabled());
+        Assert.assertTrue(loginPage.siginButton.isEnabled());
+        loginPage.emailField.clear();
+        loginPage.passwordField.clear();
+        Assert.assertFalse(loginPage.siginButton.isEnabled());
     }
 }

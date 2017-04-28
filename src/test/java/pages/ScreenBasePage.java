@@ -108,12 +108,4 @@ public class ScreenBasePage extends BasePage {
         }
         return null;
     }
-
-    public void removeItem(Item item) {
-        item.controlButton.click();
-        RemoveItemPage removeItemPage = new RemoveItemPage(driver);
-        removeItemPage.waitForLoad();
-        removeItemPage.acceptButton.click();
-        Assert.assertTrue(isSameScreen());
-    }
 }

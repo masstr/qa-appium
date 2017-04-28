@@ -2,11 +2,16 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
-    By emailField_Locator = By.id("com.mobgen.interview.mobgeninterviewtest:id/email");
-    By passwordField_Locator = By.id("com.mobgen.interview.mobgeninterviewtest:id/password");
-    By signinButton_Locator = By.id("com.mobgen.interview.mobgeninterviewtest:id/email_sign_in_button");
+    private By emailField_Locator = By.id("com.mobgen.interview.mobgeninterviewtest:id/email");
+    private By passwordField_Locator = By.id("com.mobgen.interview.mobgeninterviewtest:id/password");
+    private By signinButton_Locator = By.id("com.mobgen.interview.mobgeninterviewtest:id/email_sign_in_button");
+
+    public WebElement emailField;
+    public WebElement passwordField;
+    public WebElement siginButton;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -16,42 +21,31 @@ public class LoginPage extends BasePage {
         waitForVisibilityOf(emailField_Locator);
         waitForVisibilityOf(passwordField_Locator);
         waitForVisibilityOf(signinButton_Locator);
-        return new LoginPage(driver);
+        emailField = driver.findElement(emailField_Locator);
+        passwordField = driver.findElement(passwordField_Locator);
+        siginButton = driver.findElement(signinButton_Locator);
+        return this;
     }
 
     public void enterEmail(String email_text) {
-        driver.findElement(emailField_Locator).sendKeys(email_text);
+        emailField.clear();
+        emailField.sendKeys(email_text);
     }
 
     public void enterPassword(String password_text) {
-        driver.findElement(passwordField_Locator).sendKeys(password_text);
+        passwordField.clear();
+        passwordField.sendKeys(password_text);
     }
 
     public void waitForSignInButtonAvailable() {
         waitForClickabilityOf(signinButton_Locator);
     }
 
-    public boolean isSignInButtonClickable() {
-        return driver.findElement(signinButton_Locator).isEnabled();
-    }
-
-    public void clearEmail() {
-        driver.findElement(emailField_Locator).clear();
-    }
-
-    public void clearPassword() {
-        driver.findElement(passwordField_Locator).clear();
-    }
-
-    public void clickSigInButton() {
-        driver.findElement(signinButton_Locator).click();
-    }
-
     public void loginWithEmailAndPassword(String email_text, String password_text) {
         enterEmail(email_text);
         enterPassword(password_text);
         waitForSignInButtonAvailable();
-        clickSigInButton();
+        siginButton.click();
     }
 
     public boolean isStillLoginPage() {
